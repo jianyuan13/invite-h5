@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>琼海中心智选假日酒店 · 开业盛典邀请函</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B439A'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%235B9BD5' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='%235B9BD5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#172A63;
+  --navy2:#0B439A;
+  --line:#3F8BD6;
+  --accent:#5B9BD5;
+  --ink:#FFFFFF;
+  --muted:#C7D6EA;
+  --hair:rgba(199,214,234,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--navy);
+  color:var(--ink);
+  line-height:1.7;
+  overflow-x:hidden;
+  animation:pageIn .9s ease both;
+}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+img{display:block;max-width:100%}
+
+/* ===== 通用容器 ===== */
+.wrap{max-width:620px;margin:0 auto;padding:0 22px}
+
+/* ===== 装饰层（独立，不裁正文） ===== */
+.deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.deco .ring{position:absolute;border:1px solid rgba(46,95,143,.14);border-radius:50%}
+.deco .r1{width:300px;height:300px;top:-120px;right:-100px;border-color:rgba(63,139,214,.18)}
+.deco .r2{width:420px;height:420px;bottom:8%;left:-180px;border-color:rgba(91,155,213,.14)}
+.deco .r3{width:160px;height:160px;top:34%;left:-70px;border-color:rgba(91,155,213,.10)}
+.deco .r4{width:260px;height:260px;bottom:-90px;right:-110px}
+main{position:relative;z-index:1}
+
+/* ===== HERO ===== */
+.hero{position:relative}
+.hero-img{width:100%;height:auto;object-fit:cover}
+.hero-copy{
+  background:linear-gradient(180deg,var(--navy2),var(--navy));
+  padding:38px 22px 40px;
+  text-align:center;
+  position:relative;
+}
+.hero-copy::before,.hero-copy::after{
+  content:"";position:absolute;left:50%;transform:translateX(-50%);height:1px;
+  background:var(--hair);
+}
+.hero-copy::before{top:22px;width:52px}
+.hero-copy::after{bottom:22px;width:52px}
+.hero-copy .goldbar{width:40px;height:1px;background:var(--accent);margin:0 auto 18px}
+.hero-copy .kicker{
+  font-size:12px;letter-spacing:.34em;color:var(--accent);
+  margin-bottom:14px;font-weight:500;
+}
+.hero-copy h1{
+  font-size:clamp(22px,7vw,34px);font-weight:700;letter-spacing:.12em;line-height:1.3;
+  white-space:nowrap;
+}
+.hero-copy .sub{
+  margin-top:10px;font-size:14px;color:var(--muted);font-weight:300;
+  letter-spacing:.08em;
+}
+.hero-meta{
+  margin:30px auto 0;width:max-content;display:flex;flex-direction:column;gap:10px;
+  font-size:13px;color:var(--ink);align-items:flex-start;text-align:left;
+}
+.hero-meta .row{display:flex;align-items:center;gap:12px;justify-content:flex-start}
+.hero-meta svg{width:15px;height:15px;stroke:var(--accent);fill:none;stroke-width:1.5;flex:none}
+.hero-meta b{font-weight:500;color:#fff;letter-spacing:.05em}
+
+/* ===== 区块标题 ===== */
+.section{padding:54px 22px}
+.sec-head{text-align:center;margin-bottom:30px}
+.sec-head .cn{font-size:19px;font-weight:700;letter-spacing:.18em}
+.sec-head .en{font-size:11px;color:var(--accent);letter-spacing:.3em;margin-top:6px}
+.sec-head .bar{width:34px;height:1px;background:var(--accent);margin:14px auto 0}
+
+/* ===== 邀请正文 ===== */
+.letter{padding-top:0;text-align:left}
+.letter .greet{font-size:15px;color:var(--ink);margin-bottom:22px;letter-spacing:.06em;font-weight:500;text-indent:0}
+.letter p{
+  font-size:14.5px;color:var(--muted);font-weight:300;text-align:justify;
+  text-align-last:left;line-height:2;letter-spacing:.02em;margin:0 auto 18px;max-width:520px;
+  text-indent:2em;
+}
+.letter p.lead{color:var(--ink);font-weight:400;font-size:15px}
+.letter .hl{color:var(--accent)}
+
+/* ===== 盛典详情 ===== */
+.info-grid{
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  display:grid;grid-template-columns:1fr;gap:0;
+}
+.info-item{
+  padding:22px 0;display:flex;gap:16px;align-items:flex-start;
+  border-bottom:1px solid var(--hair);
+}
+.info-item:last-child{border-bottom:none}
+.info-item .ic{flex:none;width:38px;height:38px;border:1px solid var(--hair);border-radius:50%;
+  display:flex;align-items:center;justify-content:center}
+.info-item svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.5}
+.info-item .lab{font-size:12px;color:var(--accent);letter-spacing:.14em;margin-bottom:4px}
+.info-item .val{font-size:15px;color:var(--ink);letter-spacing:.04em}
+.info-item .val small{color:var(--muted);font-weight:300;font-size:13px}
+
+/* ===== 时间轴流程 ===== */
+.timeline{margin-top:6px}
+.tl-row{
+  display:grid;grid-template-columns:96px 22px 1fr;
+  grid-template-areas:"time dot body";gap:0;
+  align-items:start;
+}
+.tl-time{grid-area:time;padding-top:3px;font-size:13px;color:var(--accent);
+  font-weight:500;letter-spacing:.02em;text-align:right;padding-right:14px;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.tl-dot{grid-area:dot;position:relative;display:flex;justify-content:center;height:100%}
+.tl-dot .axis{position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--hair);transform:translateX(-50%)}
+.tl-row:last-child .tl-dot .axis{bottom:auto;height:10px}
+.tl-dot .node{position:relative;z-index:1;width:10px;height:10px;margin-top:5px;
+  border-radius:50%;background:var(--navy);border:2px solid var(--accent);box-sizing:border-box}
+.tl-body{grid-area:body;padding-bottom:34px;padding-left:4px}
+.tl-row:last-child .tl-body{padding-bottom:6px}
+.tl-name{font-size:15px;color:var(--ink);font-weight:500;letter-spacing:.04em}
+.tl-name b{color:var(--accent);font-weight:500}
+.tl-desc{font-size:13px;color:var(--muted);font-weight:300;margin-top:4px;line-height:1.75}
+
+/* ===== 期许 / 落款 ===== */
+.closing{text-align:center;padding-top:8px}
+.closing .line1{font-size:16px;color:var(--ink);font-weight:500;letter-spacing:.12em;margin-bottom:20px}
+.closing p{font-size:14px;color:var(--muted);font-weight:300;line-height:2;max-width:500px;margin:0 auto}
+.closing .sign{
+  margin-top:36px;padding-top:22px;border-top:1px solid var(--hair);
+  font-size:14px;color:var(--ink);letter-spacing:.08em;
+}
+.closing .sign small{display:block;margin-top:6px;color:var(--muted);font-weight:300;font-size:12px;letter-spacing:.1em}
+
+/* ===== CTA ===== */
+.cta{padding:44px 22px 56px;text-align:center}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 42px;border:1px solid var(--accent);color:var(--accent);
+  font-size:15px;letter-spacing:.22em;background:transparent;cursor:pointer;
+  font-family:inherit;transition:background .3s,color .3s;
+}
+.btn:hover{background:var(--accent);color:var(--navy)}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5}
+.cta .note{margin-top:14px;font-size:12px;color:var(--muted);font-weight:300;letter-spacing:.06em}
+.toast{
+  position:fixed;left:50%;bottom:56px;transform:translateX(-50%) translateY(20px);
+  background:var(--accent);color:var(--navy);padding:12px 24px;font-size:14px;
+  letter-spacing:.08em;opacity:0;pointer-events:none;transition:opacity .35s,transform .35s;
+  z-index:20;max-width:84vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ===== 音乐开启提示 ===== */
+.music-hint{
+  position:fixed;left:50%;bottom:88px;transform:translateX(-50%);
+  background:rgba(11,67,154,.92);border:1px solid var(--hair);color:var(--ink);
+  font-size:12px;letter-spacing:.08em;padding:9px 18px;z-index:31;
+  opacity:0;transition:opacity .4s;pointer-events:none;white-space:nowrap;
+}
+.music-hint.show{opacity:1}
+
+/* ===== 页脚 ===== */
+footer{padding:26px 22px 34px;text-align:center;border-top:1px solid var(--hair)}
+footer .brand{font-size:12px;color:var(--muted);letter-spacing:.14em}
+footer .brand b{color:var(--ink);font-weight:500}
+
+/* ===== 桌面扩展 ===== */
+@media (min-width:768px){
+  .hero-img{max-height:300px;object-fit:cover;object-position:center;width:100%}
+  .hero-copy{padding:52px 40px}
+  .hero-copy h1{font-size:42px}
+  .hero-meta{flex-direction:row;justify-content:flex-start;gap:32px}
+  .info-grid{grid-template-columns:1fr 1fr;border:none}
+  .info-item{border-bottom:none;border-right:1px solid var(--hair);padding:26px 24px}
+  .info-item:last-child{border-right:none}
+  .letter p{font-size:15px}
+  .tl-row{grid-template-columns:140px 24px 1fr}
+  .tl-time{padding-top:4px}
+}
+
+/* ===== 入场与滚动渐隐渐出动画 ===== */
+.anim{opacity:0;animation:fadeUp 1s cubic-bezier(.22,.61,.36,1) forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.a1{animation-delay:.15s}
+.a2{animation-delay:.35s}
+.a3{animation-delay:.55s}
+.a4{animation-delay:.75s}
+.a5{animation-delay:.95s}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.timeline .tl-row.reveal{transition-delay:0s}
+.timeline .tl-row.reveal:nth-child(2n){transition-delay:.1s}
+@media (prefers-reduced-motion:reduce){
+  body{animation:none}
+  .anim{opacity:1;animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* ===== 背景音乐按钮 ===== */
+.music-btn{
+  position:fixed;right:18px;bottom:26px;z-index:30;width:48px;height:48px;
+  border:1px solid var(--hair);border-radius:50%;
+  background:rgba(11,67,154,.78);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  font-family:inherit;transition:border-color .3s,background .3s;
+}
+.music-btn:hover{border-color:var(--accent);background:rgba(23,42,99,.9)}
+.music-btn.playing{border-color:var(--accent)}
+.music-btn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6}
+.music-btn .ico-pause{display:none}
+.music-btn.playing .ico-play{display:none}
+.music-btn.playing .ico-pause{display:block}
+</style>
+</head>
+<body>
+<!-- 装饰层 -->
+<div class="deco" aria-hidden="true">
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="ring r3"></div>
+  <div class="ring r4"></div>
+</div>
+
+<main>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <img class="hero-img" src="assets/main_visual.jpg" alt="琼海中心智选假日酒店开业盛典主视觉">
+    <div class="hero-copy">
+      <div class="goldbar anim a1"></div>
+      <div class="kicker anim a1">GRAND OPENING</div>
+      <h1 class="anim a2">开业盛典 · 诚挚邀请</h1>
+      <p class="sub anim a3">睿智之选，共启新程</p>
+      <div class="hero-meta anim a4">
+        <div class="row">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          <span><b>2026.10.25</b></span>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span>08:30 — 12:30</span>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <span><b>琼海中心智选假日酒店</b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 邀请正文 ===== -->
+  <section class="section letter">
+    <div class="sec-head reveal">
+      <div class="cn">诚挚邀请</div>
+      <div class="en">INVITATION</div>
+      <div class="bar"></div>
+    </div>
+    <p class="greet reveal">尊敬的各位嘉宾、各界挚友：</p>
+    <p class="lead reveal">时光淬炼匠心，盛境如约启新！历经精心筹备，承蒙各界鼎力支持与厚爱，<span class="hl">琼海中心智选假日酒店</span>即将盛大启幕，正式扬帆起航！</p>
+    <p class="reveal">为见证美好时刻，共启崭新华章，我们诚挚邀请您莅临本次开业盛典，与我们共赏盛景、共鉴新程、共叙情谊。酒店将以匠心品质、暖心服务，开启琼海旅居崭新篇章，期盼与您携手，共赴美好新征程！</p>
+  </section>
+
+  <!-- ===== 盛典详情 ===== -->
+  <section class="section" style="padding-top:0">
+    <div class="sec-head reveal">
+      <div class="cn">盛典详情</div>
+      <div class="en">DETAILS</div>
+      <div class="bar"></div>
+    </div>
+    <div class="wrap" style="padding:0">
+      <div class="info-grid">
+        <div class="info-item reveal">
+          <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div>
+          <div><div class="lab">盛典时间</div><div class="val">2026年10月25日</div><div class="val"><small>上午 08:30 — 12:30</small></div></div>
+        </div>
+        <div class="info-item reveal">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><div class="lab">盛典地址</div><div class="val">琼海中心智选假日酒店</div><div class="val"><small>中国 · 琼海</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 开业盛典流程 ===== -->
+  <section class="section" style="padding-top:0">
+    <div class="sec-head reveal">
+      <div class="cn">开业盛典流程</div>
+      <div class="en">PROGRAM</div>
+      <div class="bar"></div>
+    </div>
+    <div class="wrap" style="padding:0">
+      <div class="timeline">
+        <div class="tl-row reveal">
+          <div class="tl-time">08:30–09:00</div>
+          <div class="tl-dot"><div class="axis"></div><div class="node"></div></div>
+          <div class="tl-body"><div class="tl-name">签到入场</div><div class="tl-desc">礼宾迎宾、签到墙合影、佩戴专属手环、伴手礼派送</div></div>
+        </div>
+        <div class="tl-row reveal">
+          <div class="tl-time">09:00–09:10</div>
+          <div class="tl-dot"><div class="axis"></div><div class="node"></div></div>
+          <div class="tl-body"><div class="tl-name">开场鼓舞</div><div class="tl-desc">激昂鼓舞表演，盛典华丽启幕</div></div>
+        </div>
+        <div class="tl-row reveal">
+          <div class="tl-time">09:10–09:20</div>
+          <div class="tl-dot"><div class="axis"></div><div class="node"></div></div>
+          <div class="tl-body"><div class="tl-name">主持人开场</div><div class="tl-desc">登场致辞，介绍到场领导及嘉宾</div></div>
+        </div>
+        <div class="tl-row reveal">
+          <div class="tl-time">09:20–09:30</div>
+          <div class="tl-dot"><div class="axis"></div><div class="node"></div></div>
+          <div class="tl-body"><div class="tl-name">领导致辞</div><div class="tl-desc">寄语未来，共启发展新篇</div></div>
+        </div>
+        <div class="tl-row reveal">
+          <div class="tl-time">09:30–09:50</div>
+          <div class="tl-dot"><div class="axis"></div><div class="node"></div></div>
+          <div class="tl-body"><div class="tl-name">醒狮点睛</div><div class="tl-desc">金鼓齐鸣、祥狮献瑞，点睛采青、纳福迎祥</div></div>
+        </div>
+        <div class="tl-row reveal">
+          <div class="tl-time">09:50–10:00</div>
+          <div class="tl-dot"><div class="axis"></div><div class="node"></div></div>
+          <div class="tl-body"><div class="tl-name">开业剪彩</div><div class="tl-desc">金剪启盛、香槟献礼，礼炮齐鸣、盛启新章</div></div>
+        </div>
+        <div class="tl-row reveal">
+          <div class="tl-time">10:00–10:10</div>
+          <div class="tl-dot"><div class="axis"></div><div class="node"></div></div>
+          <div class="tl-body"><div class="tl-name">合影留念</div><div class="tl-desc">全体嘉宾定格美好盛典瞬间</div></div>
+        </div>
+        <div class="tl-row reveal">
+          <div class="tl-time">10:10–11:00</div>
+          <div class="tl-dot"><div class="axis"></div><div class="node"></div></div>
+          <div class="tl-body"><div class="tl-name">酒店参观</div><div class="tl-desc">分组品鉴客房及酒店公共区域设施</div></div>
+        </div>
+        <div class="tl-row reveal">
+          <div class="tl-time">11:00–12:30</div>
+          <div class="tl-dot"><div class="axis"></div><div class="node"></div></div>
+          <div class="tl-body"><div class="tl-name">雅致冷餐会</div><div class="tl-desc">自由交流畅谈，品鉴精致餐点</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 期许 / 落款 ===== -->
+  <section class="section closing">
+    <div class="line1 reveal">一席盛宴 · 敬待宾朋</div>
+    <p class="reveal">再次诚挚恭迎您拨冗莅临，同贺开业之喜，共启璀璨新程！</p>
+    <div class="sign reveal">琼海中心智选假日酒店
+      <small>2026 年 10 月 12 日</small>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta">
+    <button class="btn reveal" id="rsvpBtn" type="button">
+      <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+      确认出席
+    </button>
+    <div class="note reveal">欢迎点击确认，期待您的莅临</div>
+  </section>
+</main>
+
+<footer>
+  <div class="brand">Holiday Inn Express · <b>琼海中心智选假日酒店</b></div>
+</footer>
+
+<audio id="bgm" src="assets/bgm.wav" loop preload="none"></audio>
+<button class="music-btn" id="musicBtn" type="button" aria-label="播放背景音乐" aria-pressed="false">
+  <svg class="ico-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+  <svg class="ico-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+</button>
+
+<div class="toast" id="toast" role="status" aria-live="polite">感谢确认，期待您的莅临</div>
+<div class="music-hint" id="musicHint">轻触屏幕，开启背景音乐</div>
+
+<script>
+// ===== 滚动渐隐渐出动画（进入淡入、离开淡出） =====
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.reveal'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        en.target.classList.toggle('in',en.isIntersecting);
+      });
+    },{threshold:.12});
+    items.forEach(function(n){io.observe(n);});
+  }else{
+    items.forEach(function(n){n.classList.add('in');});
+  }
+})();
+
+// ===== 确认出席：toast 反馈 =====
+(function(){
+  var btn=document.getElementById('rsvpBtn');
+  var toast=document.getElementById('toast');
+  var timer=null;
+  btn.addEventListener('click',function(){
+    toast.classList.add('show');
+    if(timer)clearTimeout(timer);
+    timer=setTimeout(function(){toast.classList.remove('show');},2400);
+  });
+})();
+
+// ===== 背景音乐：进入自动尝试播放；浏览器拦截时轻触屏幕即播 =====
+(function(){
+  var btn=document.getElementById('musicBtn');
+  var audio=document.getElementById('bgm');
+  var hint=document.getElementById('musicHint');
+  var playing=false,started=false;
+  function setPlaying(on){
+    playing=on;
+    btn.classList.toggle('playing',on);
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    btn.setAttribute('aria-label',on?'暂停背景音乐':'播放背景音乐');
+  }
+  function playNow(){
+    if(started)return;
+    var p=audio.play();
+    if(p&&p.then){
+      p.then(function(){started=true;setPlaying(true);hideHint();})
+       .catch(function(){showHint();});
+    }
+  }
+  function showHint(){hint.classList.add('show');}
+  function hideHint(){hint.classList.remove('show');}
+  btn.addEventListener('click',function(){
+    if(playing){audio.pause();setPlaying(false);}
+    else{playNow();}
+  });
+  // 进入页面自动尝试播放
+  window.addEventListener('load',playNow);
+  // 首次任意交互（浏览器要求用户手势时）立即播放
+  function firstTouch(ev){
+    playNow();
+    document.removeEventListener('pointerdown',firstTouch,true);
+    document.removeEventListener('click',firstTouch,true);
+  }
+  document.addEventListener('pointerdown',firstTouch,true);
+  document.addEventListener('click',firstTouch,true);
+})();
+</script>
+</body>
+</html>
