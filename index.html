@@ -189,6 +189,30 @@ main{position:relative;z-index:1}
 .gallery .ph.h43{aspect-ratio:4/3}
 .gallery .ph.full{grid-column:1/-1;aspect-ratio:16/9}
 
+/* ===== 照片灯箱：点击放大 ===== */
+.lightbox{
+  position:fixed;inset:0;background:rgba(2,8,24,.94);
+  z-index:60;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox img{
+  max-width:92vw;max-height:86vh;border-radius:10px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  transform:scale(.94);transition:transform .3s ease;
+}
+.lightbox.open img{transform:scale(1)}
+.lightbox .lb-close{
+  position:fixed;top:18px;right:18px;width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  color:#fff;font-size:20px;line-height:38px;text-align:center;cursor:pointer;z-index:61;
+}
+.lightbox .lb-cap{
+  position:fixed;bottom:24px;left:0;right:0;text-align:center;
+  color:rgba(255,255,255,.85);font-size:13px;letter-spacing:.12em;z-index:61;
+}
+body.lb-lock{overflow:hidden}
+
 /* ===== 页脚 ===== */
 footer{padding:26px 22px 34px;text-align:center;border-top:1px solid var(--hair)}
 footer .brand{font-size:11px;color:var(--muted);letter-spacing:.08em;line-height:1.9}
@@ -457,6 +481,12 @@ footer .brand b{color:var(--ink);font-weight:500}
 <div class="toast" id="toast" role="status" aria-live="polite">感谢确认，期待您的莅临</div>
 <div class="music-hint" id="musicHint">轻触屏幕，开启背景音乐</div>
 
+<!-- ===== 照片灯箱 ===== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="酒店照片大图">
+  <img id="lightboxImg" src="" alt="酒店照片大图">
+  <div class="lb-close" id="lbClose">×</div>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
 <script>
 // ===== 结尾邀请语：窄屏缩为一行显示，避免末尾单字孤行 =====
 (function(){
@@ -558,6 +588,33 @@ footer .brand b{color:var(--ink);font-weight:500}
   }
   document.addEventListener('pointerdown',firstTouch,true);
   document.addEventListener('click',firstTouch,true);
+})();
+// ===== 照片点击放大（灯箱） =====
+(function(){
+  var lb=document.getElementById('lightbox');
+  var img=document.getElementById('lightboxImg');
+  var cap=document.getElementById('lbCap');
+  var closeBtn=document.getElementById('lbClose');
+  function openLight(src,text){
+    img.src=src;cap.textContent=text||'';
+    lb.classList.add('open');document.body.classList.add('lb-lock');
+  }
+  function closeLight(){
+    lb.classList.remove('open');document.body.classList.remove('lb-lock');
+    img.src='';
+  }
+  [].slice.call(document.querySelectorAll('.gallery .ph img')).forEach(function(im){
+    im.addEventListener('click',function(ev){
+      ev.stopPropagation();
+      openLight(im.getAttribute('src'),im.getAttribute('alt')||'');
+    });
+    im.style.cursor='zoom-in';
+  });
+  lb.addEventListener('click',closeLight);
+  closeBtn.addEventListener('click',function(ev){ev.stopPropagation();closeLight();});
+  document.addEventListener('keydown',function(ev){
+    if(ev.key==='Escape')closeLight();
+  });
 })();
 </script>
 </body>
