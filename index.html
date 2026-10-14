@@ -116,7 +116,7 @@ main{position:relative;z-index:1}
 /* ===== 时间轴流程 ===== */
 .timeline{margin-top:6px}
 .tl-row{
-  display:grid;grid-template-columns:96px 22px 1fr;
+  display:grid;grid-template-columns:96px 22px minmax(0,1fr);
   grid-template-areas:"time dot body";gap:0;
   align-items:start;
 }
@@ -470,25 +470,15 @@ footer .brand b{color:var(--ink);font-weight:500}
   });
 })();
 
-// ===== 流程说明文字：窄屏按顿号/逗号短语成组，断行只会发生在标点之后 =====
+// ===== 流程说明文字：全部缩为一行显示，不断行 =====
 (function(){
-  var narrow=window.matchMedia('(max-width:480px)');
   [].slice.call(document.querySelectorAll('.tl-desc')).forEach(function(el){
-    var t=el.textContent.trim();
-    if(t.length<3)return;
-    if(narrow.matches){
-      var segs=[],buf='',i;
-      for(i=0;i<t.length;i++){buf+=t[i];if(t[i]==='、'||t[i]==='，'){segs.push(buf);buf='';}}
-      if(buf)segs.push(buf);
-      if(segs.length>1){
-        el.innerHTML=segs.map(function(s){
-          return '<span style="white-space:nowrap">'+s+'</span>';
-        }).join('');
-        return;
-      }
+    el.style.whiteSpace='nowrap';
+    var fs=parseFloat(getComputedStyle(el).fontSize);
+    var guard=0;
+    while(el.scrollWidth>el.clientWidth && fs>9 && guard<40){
+      fs-=0.5;el.style.fontSize=fs+'px';guard++;
     }
-    // 无标点长句（或桌面）：末尾两字绑定，避免单字孤行
-    el.innerHTML=t.slice(0,-2)+'<span style="white-space:nowrap">'+t.slice(-2)+'</span>';
   });
 })();
 
