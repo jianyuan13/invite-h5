@@ -172,6 +172,22 @@ main{position:relative;z-index:1}
 }
 .music-hint.show{opacity:1}
 
+/* ===== 酒店风采 ===== */
+.gallery .scene{margin-top:32px}
+.gallery .scene:first-child{margin-top:0}
+.gallery .scene-t{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.gallery .scene-t::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none}
+.gallery .scene-t span{font-size:15px;letter-spacing:.22em;color:var(--ink);font-weight:500}
+.gallery .scene-t small{font-size:11px;letter-spacing:.14em;color:var(--muted)}
+.gallery .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gallery .grid.one{grid-template-columns:1fr}
+.gallery .ph{position:relative;border-radius:12px;overflow:hidden;background:#0F2C5E;box-shadow:0 8px 22px rgba(3,10,30,.35)}
+.gallery .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.gallery .ph:hover img{transform:scale(1.04)}
+.gallery .ph.h169{aspect-ratio:16/9}
+.gallery .ph.h43{aspect-ratio:4/3}
+.gallery .ph.full{grid-column:1/-1;aspect-ratio:16/9}
+
 /* ===== 页脚 ===== */
 footer{padding:26px 22px 34px;text-align:center;border-top:1px solid var(--hair)}
 footer .brand{font-size:11px;color:var(--muted);letter-spacing:.08em;line-height:1.9}
@@ -295,6 +311,61 @@ footer .brand b{color:var(--ink);font-weight:500}
     </div>
   </section>
 
+  <!-- ===== 酒店风采 ===== -->
+  <section class="section gallery">
+    <div class="sec-head reveal">
+      <div class="cn">酒店风采</div>
+      <div class="en">HOTEL GALLERY</div>
+      <div class="bar"></div>
+    </div>
+    <div class="wrap" style="padding:0">
+      <div class="scene reveal">
+        <div class="scene-t"><span>酒店外观</span><small>EXTERIOR</small></div>
+        <div class="grid one">
+          <div class="ph h169"><img src="assets/hotel/hotel-exterior.jpg" alt="酒店外观夜景" ></div>
+        </div>
+      </div>
+      <div class="scene reveal">
+        <div class="scene-t"><span>大堂雅境</span><small>LOBBY</small></div>
+        <div class="grid">
+          <div class="ph h43"><img src="assets/hotel/lobby-1.jpg" alt="酒店大堂" ></div>
+          <div class="ph h43"><img src="assets/hotel/lobby-2.jpg" alt="酒店大堂" ></div>
+        </div>
+      </div>
+      <div class="scene reveal">
+        <div class="scene-t"><span>客房臻享</span><small>ROOMS</small></div>
+        <div class="grid">
+          <div class="ph h43"><img src="assets/hotel/room-king-1.jpg" alt="大床房" ></div>
+          <div class="ph h43"><img src="assets/hotel/room-twin.jpg" alt="双床房" ></div>
+          <div class="ph h43"><img src="assets/hotel/room-desk.jpg" alt="商务客房" ></div>
+          <div class="ph h43"><img src="assets/hotel/room-kids.jpg" alt="亲子主题房" ></div>
+        </div>
+      </div>
+      <div class="scene reveal">
+        <div class="scene-t"><span>餐饮雅集</span><small>DINING</small></div>
+        <div class="grid">
+          <div class="ph h43"><img src="assets/hotel/dining-cafe.jpg" alt="咖啡吧" ></div>
+          <div class="ph h43"><img src="assets/hotel/dining-restaurant.jpg" alt="全日制餐厅" ></div>
+          <div class="ph h169 full"><img src="assets/hotel/dining-private.jpg" alt="餐饮包厢" ></div>
+        </div>
+      </div>
+      <div class="scene reveal">
+        <div class="scene-t"><span>会议宴会</span><small>MEETING</small></div>
+        <div class="grid">
+          <div class="ph h43"><img src="assets/hotel/meeting-small.jpg" alt="会议室" ></div>
+          <div class="ph h43"><img src="assets/hotel/meeting-hall.jpg" alt="多功能厅" ></div>
+        </div>
+      </div>
+      <div class="scene reveal">
+        <div class="scene-t"><span>康体配套</span><small>FACILITIES</small></div>
+        <div class="grid">
+          <div class="ph h43"><img src="assets/hotel/gym.jpg" alt="健身房" ></div>
+          <div class="ph h43"><img src="assets/hotel/laundry.jpg" alt="自助洗衣房" ></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 开业盛典流程 ===== -->
   <section class="section" style="padding-top:0">
     <div class="sec-head reveal">
@@ -356,7 +427,7 @@ footer .brand b{color:var(--ink);font-weight:500}
   <!-- ===== 期许 / 落款 ===== -->
   <section class="section closing">
     <div class="line1 reveal">一席盛宴 · 敬待宾朋</div>
-    <div style="font-size: clamp(12px,2.2vw,18px);letter-spacing:0.01em;line-height:1.3;color:var(--ink);font-weight:400;text-align:center;white-space:nowrap;" class="reveal">再次诚挚恭迎您拨冗莅临，同贺开业之喜，共启璀璨新程！</div>
+    <p class="reveal">再次诚挚恭迎您拨冗莅临，同贺开业之喜，共启璀璨新程！</p>
     <div class="sign reveal">琼海中心智选假日酒店
       <small>2026 年 10 月 25 日</small>
     </div>
