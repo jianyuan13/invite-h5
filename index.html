@@ -470,16 +470,29 @@ footer .brand b{color:var(--ink);font-weight:500}
   });
 })();
 
-// ===== 流程说明文字：全部缩为一行显示，不断行 =====
+// ===== 流程说明文字：全部缩为一行显示、不断行，且各条字号统一 =====
 (function(){
-  [].slice.call(document.querySelectorAll('.tl-desc')).forEach(function(el){
-    el.style.whiteSpace='nowrap';
-    var fs=parseFloat(getComputedStyle(el).fontSize);
-    var guard=0;
-    while(el.scrollWidth>el.clientWidth && fs>9 && guard<40){
-      fs-=0.5;el.style.fontSize=fs+'px';guard++;
-    }
+  var els=[].slice.call(document.querySelectorAll('.tl-desc'));
+  if(!els.length)return;
+  els.forEach(function(el){el.style.whiteSpace='nowrap';el.style.fontSize='13px';});
+  // 按最长一条所需缩放量统一所有条目的字号，保证每条都是一行且字号一致
+  var maxRatio=1;
+  els.forEach(function(el){
+    var r=el.scrollWidth/el.clientWidth;
+    if(r>maxRatio)maxRatio=r;
   });
+  var target=13/maxRatio;
+  if(target<10)target=10;
+  els.forEach(function(el){el.style.fontSize=target+'px';});
+  // 极端超长兜底：若统一字号仍放不下，仅对确实溢出的条目再微缩
+  if(target<=10){
+    els.forEach(function(el){
+      var g=0;
+      while(el.scrollWidth>el.clientWidth && g<10){
+        el.style.fontSize=(parseFloat(el.style.fontSize)-0.5)+'px';g++;
+      }
+    });
+  }
 })();
 
 // ===== 滚动渐隐渐出动画（进入淡入、离开淡出） =====
