@@ -91,7 +91,7 @@ main{position:relative;z-index:1}
 .letter p{
   font-size:14.5px;color:var(--muted);font-weight:300;text-align:justify;
   text-align-last:left;line-height:2;letter-spacing:.02em;margin:0 auto 18px;max-width:520px;
-  text-indent:2em;
+  text-indent:2em;text-wrap:pretty;
 }
 .letter p.lead{color:var(--ink);font-weight:400;font-size:15px}
 .letter .hl{color:var(--accent)}
@@ -132,7 +132,7 @@ main{position:relative;z-index:1}
 .tl-row:last-child .tl-body{padding-bottom:6px}
 .tl-name{font-size:15px;color:var(--ink);font-weight:500;letter-spacing:.04em}
 .tl-name b{color:var(--accent);font-weight:500}
-.tl-desc{font-size:13px;color:var(--muted);font-weight:300;margin-top:4px;line-height:1.75}
+.tl-desc{font-size:13px;color:var(--muted);font-weight:300;margin-top:4px;line-height:1.75;text-wrap:pretty}
 
 /* ===== 期许 / 落款 ===== */
 .closing{text-align:center;padding-top:8px}
@@ -156,16 +156,17 @@ main{position:relative;z-index:1}
 .btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5}
 .cta .note{margin-top:14px;font-size:12px;color:var(--muted);font-weight:300;letter-spacing:.06em}
 .toast{
-  position:fixed;left:50%;bottom:56px;transform:translateX(-50%) translateY(20px);
+  position:fixed;left:0;right:0;bottom:56px;margin:0 auto;
+  width:max-content;max-width:84vw;
   background:var(--accent);color:var(--navy);padding:12px 24px;font-size:14px;
-  letter-spacing:.08em;opacity:0;pointer-events:none;transition:opacity .35s,transform .35s;
-  z-index:20;max-width:84vw;text-align:center;
+  letter-spacing:.08em;opacity:0;pointer-events:none;transition:opacity .35s;
+  z-index:20;text-align:center;
 }
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.show{opacity:1}
 
 /* ===== 音乐开启提示 ===== */
 .music-hint{
-  position:fixed;left:50%;bottom:88px;transform:translateX(-50%);
+  position:fixed;left:0;right:0;bottom:88px;margin:0 auto;width:max-content;max-width:84vw;
   background:rgba(11,67,154,.92);border:1px solid var(--hair);color:var(--ink);
   font-size:12px;letter-spacing:.08em;padding:9px 18px;z-index:31;
   opacity:0;transition:opacity .4s;pointer-events:none;white-space:nowrap;
@@ -427,7 +428,7 @@ footer .brand b{color:var(--ink);font-weight:500}
   <!-- ===== 期许 / 落款 ===== -->
   <section class="section closing">
     <div class="line1 reveal">一席盛宴 · 敬待宾朋</div>
-    <div style="font-size: clamp(12px,2.2vw,18px);letter-spacing:0.01em;line-height:1.3;color:var(--ink);font-weight:400;text-align:center;white-space:nowrap;" class="reveal">再次诚挚恭迎您拨冗莅临，同贺开业之喜，共启璀璨新程！</div>
+    <p class="reveal">再次诚挚恭迎您拨冗莅临，同贺开业之喜，共启璀璨新程！</p>
     <div class="sign reveal">琼海中心智选假日酒店
       <small>2026 年 10 月 25 日</small>
     </div>
@@ -457,6 +458,40 @@ footer .brand b{color:var(--ink);font-weight:500}
 <div class="music-hint" id="musicHint">轻触屏幕，开启背景音乐</div>
 
 <script>
+// ===== 结尾邀请语：窄屏缩为一行显示，避免末尾单字孤行 =====
+(function(){
+  [].slice.call(document.querySelectorAll('.section.closing p')).forEach(function(el){
+    el.style.whiteSpace='nowrap';
+    var fs=parseFloat(getComputedStyle(el).fontSize);
+    var guard=0;
+    while(el.scrollWidth>el.clientWidth && fs>10 && guard<20){
+      fs-=0.5;el.style.fontSize=fs+'px';guard++;
+    }
+  });
+})();
+
+// ===== 流程说明文字：窄屏按顿号/逗号短语成组，断行只会发生在标点之后 =====
+(function(){
+  var narrow=window.matchMedia('(max-width:480px)');
+  [].slice.call(document.querySelectorAll('.tl-desc')).forEach(function(el){
+    var t=el.textContent.trim();
+    if(t.length<3)return;
+    if(narrow.matches){
+      var segs=[],buf='',i;
+      for(i=0;i<t.length;i++){buf+=t[i];if(t[i]==='、'||t[i]==='，'){segs.push(buf);buf='';}}
+      if(buf)segs.push(buf);
+      if(segs.length>1){
+        el.innerHTML=segs.map(function(s){
+          return '<span style="white-space:nowrap">'+s+'</span>';
+        }).join('');
+        return;
+      }
+    }
+    // 无标点长句（或桌面）：末尾两字绑定，避免单字孤行
+    el.innerHTML=t.slice(0,-2)+'<span style="white-space:nowrap">'+t.slice(-2)+'</span>';
+  });
+})();
+
 // ===== 滚动渐隐渐出动画（进入淡入、离开淡出） =====
 (function(){
   var items=[].slice.call(document.querySelectorAll('.reveal'));
