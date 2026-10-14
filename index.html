@@ -90,7 +90,8 @@ main{position:relative;z-index:1}
 .letter .greet{font-size:15px;color:var(--ink);margin-bottom:22px;letter-spacing:.06em;font-weight:500;text-indent:0}
 .letter p{
   font-size:15px;color:var(--muted);font-weight:300;text-align:left;
-  text-align-last:left;line-height:2;letter-spacing:.02em;margin:0 auto 18px;max-width:520px;
+  text-align-last:left;line-height:2;letter-spacing:.02em;margin:0 auto 18px;
+  width:100%;max-width:520px;box-sizing:border-box;
   text-indent:2em;text-wrap:pretty;
 }
 .letter p.lead{color:var(--ink);font-weight:400;font-size:15px}
@@ -498,6 +499,104 @@ footer .brand b{color:var(--ink);font-weight:500}
       fs-=0.5;el.style.fontSize=fs+'px';guard++;
     }
   });
+})();
+
+// ===== 邀请正文：中文书刊式排版（每行撑满、字距均匀、首行缩进2字符） =====
+// 解决 iOS Safari 下 text-align:justify 会把中文字距拉大的问题：
+// 用 JS 把段落按每行可容纳字数切行，行尾多余空间均匀分摊到字间距，
+// 行尾整齐且字距增量 <1px，肉眼几乎无感；末行左对齐（中文书刊惯例）。
+(function(){
+  var ps=[].slice.call(document.querySelectorAll('.section.letter p:not(.greet)'));
+  if(!ps.length)return;
+  function measureCharW(p){
+    var s=document.createElement('span');
+    s.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;font:inherit;letter-spacing:inherit';
+    s.textContent='中';
+    p.appendChild(s);
+    var w=s.getBoundingClientRect().width;
+    p.removeChild(s);
+    return w||15;
+  }
+  function collect(p){
+    var seq=[];
+    (function walk(node,hl){
+      for(var i=0;i<node.childNodes.length;i++){
+        var c=node.childNodes[i];
+        if(c.nodeType===3){
+          var t=c.nodeValue;
+          for(var j=0;j<t.length;j++)seq.push({ch:t[j],hl:hl});
+        }else if(c.nodeType===1){
+          walk(c, hl||(c.className&&(''+c.className).indexOf('hl')>=0));
+        }
+      }
+    })(p,false);
+    return seq;
+  }
+  function layout(p){
+    if(!p.__orig)p.__orig=p.innerHTML;   // 首次记录段落原始内容（含 hl 高亮）
+    p.innerHTML=p.__orig;                // 每次排版前还原原始内容，避免重排时把上次生成的
+                                         // 全角缩进空格字符也收进字符序列（否则空格会累积、行数错乱）
+    var seq=collect(p);
+    if(!seq.length)return;
+    var base=parseFloat(getComputedStyle(p).letterSpacing)||0;
+    var cw=measureCharW(p);
+    var W=p.clientWidth;
+    var indent=2*cw;              // 首行缩进 2 字符（text-indent:2em）
+    var usable=Math.max(60,W-indent);
+    var n=Math.max(4,Math.floor(usable/cw));   // 续行每行字数
+    var m1=Math.max(2,n-2);       // 首行字数：缩进占 2 字位，右缘与续行对齐
+    var rows=[],idx=0,first=true;
+    // 中文禁则：后置标点不得出现在行首。用字符码显式构造，避免全角/半角编码歧义
+    var PUNC=[65292,12290,12289,65307,65306,65311,65281,12301,12303,12305,65285,8240]
+      .map(function(c){return String.fromCharCode(c);}).join('')+')]}';
+    while(idx<seq.length){
+      var take=Math.min(first?m1:n,seq.length-idx);
+      // 若下一行行首是后置标点，则本行少取 1 字，把本行行尾字符留给下一行，
+      // 使标点跟在行首汉字之后（行首禁则），行尾仍是正常字符
+      if(idx+take<seq.length&&take>1&&PUNC.indexOf(seq[idx+take].ch)>=0){
+        take--;
+      }
+      rows.push(seq.slice(idx,idx+take));
+      idx+=take;
+      first=false;
+    }
+    var html='';
+    for(var r=0;r<rows.length;r++){
+      var row=rows[r];
+      var last=(r===rows.length-1);
+      var inc=0;
+      var isFirst=(r===0);
+      if(!last&&row.length>1){
+        // 首行缩进改为行首 2 个全角空格（\u3000 恒等于 1em=中文字宽，且与汉字同样
+        // 受 letter-spacing 影响），首行与续行的字符数、行宽目标、字距公式完全一致，
+        // 因此行右缘在任何浏览器（含 iOS Safari）下都严格对齐。
+        // letter-spacing 加在每个字符后（含行末字符），按 chars 分摊；预留 2px 安全余量
+        var chars=isFirst?row.length+2:row.length;
+        var avail=W;
+        var slack=avail-chars*cw;
+        if(slack>2)inc=Math.min(2.0,(slack-2)/chars);
+      }
+      var ls=Math.max(0,base+inc);
+      var inner='';
+      for(var k=0;k<row.length;k++){
+        var ch=row[k];
+        inner+=ch.hl?'<span class="hl">'+ch.ch+'</span>':ch.ch;
+      }
+      if(isFirst)inner='\u3000\u3000'+inner;   // 首行缩进：2 个全角空格（与中文等宽，右缘与续行严格对齐）
+      html+='<span class="ljl" style="display:block;letter-spacing:'+ls.toFixed(2)+'px;">'+inner+'</span>';
+    }
+    p.innerHTML=html;
+    p.style.textAlign='left';
+    p.style.textIndent='0px';   // 缩进已由首行 margin 实现，禁用 CSS text-indent 防叠加
+  }
+  function run(){ps.forEach(layout);}
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+  // 字体加载完成后再重排一次：初次排版若发生在 web 字体就绪前，字宽测量会偏大，
+  // 导致每行字数过少；字体就绪后按真实字宽重排，保证各行撑满且右缘对齐
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(run);}
+  window.addEventListener('load',function(){run();});
+  var _t;window.addEventListener('resize',function(){clearTimeout(_t);_t=setTimeout(run,200);});
 })();
 
 // ===== 流程说明文字：全部缩为一行显示、不断行，且各条字号统一 =====
